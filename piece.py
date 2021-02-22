@@ -20,7 +20,6 @@ def get_fixed_s(s):
                 cnt = 0
             result += c
 
-    print(result)
     return result[:-1]
 
 
@@ -43,3 +42,11 @@ class Piece:
         row_str = get_fixed_s(row_str)
         l = splitted[:self.row] + [row_str] + splitted[self.row+1:]  
         return '/'.join(l)
+
+
+    def __lt__(self, other):
+        return (
+            (self.row, self.col) < (other.row, other.col)
+                if (self.row, self.col) != (other.row, other.col) else
+            ord(self.typ) < ord(other.typ)
+        )
