@@ -1,4 +1,23 @@
 
+def distance_between(cord1, cord2):
+    return min(
+        abs(cord1[0] - cord2[0]),
+        abs(cord1[1] - cord2[1])
+    )
+
+
+def distance_to_angle(cord):
+    return min([
+        distance_between(cord, angle_cord)
+            for angle_cord in [(0, 0), (7, 0), (7, 7), (0, 7)]
+    ])
+
+
+def distance_to_egde(cord):
+    return min([
+        min(e, 7 - e) for e in cord
+    ])
+
 
 def get_8_char_s(s):
     for c in [str(i) for i in range(10)]:
@@ -43,6 +62,8 @@ class Piece:
         l = splitted[:self.row] + [row_str] + splitted[self.row+1:]  
         return '/'.join(l)
 
+    def get_cord(self):
+        return (self.row, self.col)
 
     def __lt__(self, other):
         return (

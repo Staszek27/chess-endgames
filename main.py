@@ -6,8 +6,12 @@ import imageio
 import os
 
 
+
+
+
 def get_boards_chain(initial_board):
-    pass # TODO
+    return [Board(bishop_end_game if i % 2 == 0 else rook_end_game)
+                for i in range(10)]
 
 
 def get_images_chain(name, initial_board):
@@ -17,8 +21,11 @@ def get_images_chain(name, initial_board):
     cnt = 0
     for board in boards_chain:
         png_name = f'{name}{cnt}'
-        board.save_state_as_png(name)
-        images_names.append(f'{png_name}.png')
+        board.save_state_as_png(png_name)
+        images_names.append(os.path.join(
+            PNG_FOLDER,
+            f'{png_name}.png'
+        ))
         cnt += 1
     return images_names
 

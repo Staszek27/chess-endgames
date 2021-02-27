@@ -4,7 +4,19 @@ bishop_end_game = [
     Piece(7, 0, 'B'),
     Piece(7, 1, 'B'),
     Piece(7, 7, 'K'),
-    Piece(0, 7, 'k')
+    Piece(3, 3, 'k'),
+]
+
+rook_end_game = [
+    Piece(7, 0, 'R'),
+    Piece(7, 7, 'K'),
+    Piece(3, 3, 'k'),
+]
+
+queen_end_game = [
+    Piece(7, 0, 'Q'),
+    Piece(7, 7, 'K'),
+    Piece(3, 3, 'k'),
 ]
 
 all_states = dict([
