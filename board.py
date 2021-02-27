@@ -64,6 +64,7 @@ class Board():
                 not self.white_turn, 
                 self.distance + 1
             ))
+            
         return result
 
 
@@ -115,11 +116,13 @@ class Board():
 
     def heuristic_value(self):
         return (
-            distance_between(
+            -distance_between(
                 self.get_black_king_pos(),
                 self.get_white_king_pos()) +
             distance_to_egde(self.get_black_king_pos()) +
-            distance_to_angle(self.get_black_king_pos()) 
+            distance_to_angle(self.get_black_king_pos()) +
+            -(int(self.its_a_win()) << 20) +
+            -(len(self.pieces) << 10)
         )
 
     
@@ -133,6 +136,9 @@ class Board():
     def its_a_win(self):
         return self.get_chess_obj().is_checkmate()
 
+
+    def __lt__(self, other):
+        return self.heuristic_value() > other.heuristic_value()
 
 
 def testing1():
